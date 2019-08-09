@@ -28,6 +28,15 @@ class MainActivity : AppCompatActivity() {
                 switchToLandscape()
             }
         })
+
+        val runnable:Runnable=object :Runnable{
+            override fun run() {
+                Thread.sleep(1000*1000)
+            }
+        }
+
+        Thread(runnable).start()
+        Singleton.getInstance(this@MainActivity)
     }
 
     fun switchToLandscape(){
