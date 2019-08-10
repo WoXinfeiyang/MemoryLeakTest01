@@ -1,5 +1,7 @@
 package com.fxj.memoryleaktest01
 
+import android.app.ActivityManager
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
@@ -20,7 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG,"**onCreate**")
+        val am=getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val memorySize= am.getMemoryClass()
+        Log.d(TAG,"**onCreate**memorySize=${memorySize}MB")
         setContentView(R.layout.activity_main)
         btnChange=findViewById(R.id.btn_change_orientation)
         btnChange.setOnClickListener(object : View.OnClickListener{
